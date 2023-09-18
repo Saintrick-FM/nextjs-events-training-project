@@ -29,3 +29,16 @@ export async function getEventById(eventId) {
   const allEvents = await getAllEventsFromFirebase();
   return allEvents.find((event) => event.id === eventId);
 }
+export async function getFilteredEvents(dateFilter) {
+  const { year, month } = dateFilter;
+  let allEvents = await getAllEventsFromFirebase();
+
+  let filteredEvents = allEvents.filter((event) => {
+    const eventDate = new Date(event.date);
+    return (
+      eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
+    );
+  });
+
+  return filteredEvents;
+}
