@@ -4,9 +4,12 @@ import { getAllEvents } from "@/dummy-data";
 import Head from "next/head";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { getAllEventsFromFirebase } from "@/helpers/api-utils";
 
-function EventsPage() {
-  const allEvents = getAllEvents();
+function EventsPage(props) {
+  // const allEvents = getAllEvents();
+  const { allEvents } = props;
   const router = useRouter();
   const findsEventsHandler = (year, month) => {
     router.push(`/events/${year}/${month}`);
@@ -29,3 +32,13 @@ function EventsPage() {
 }
 
 export default EventsPage;
+
+export async function getStaticProps() {
+  const allEvents = await getAllEventsFromFirebase();
+  return {
+    props: {
+      allEvents,
+    },
+    revalidate: 60, // Incremental Static Regeneration
+  };
+}

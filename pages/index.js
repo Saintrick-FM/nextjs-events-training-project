@@ -1,14 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import { getFeaturedEvents } from "@/dummy-data";
 import EventList from "@/components/events/event-list";
 
+import { getAllEventsFromFirebase } from "@/helpers/api-utils";
+
 const inter = Inter({ subsets: ["latin"] });
 
-export default function HomePage() {
-  const featuredEvents = getFeaturedEvents();
+export default function HomePage(props) {
+  const featuredEvents = props.featuredEvents;
   return (
     <>
       <Head>
@@ -23,4 +24,18 @@ export default function HomePage() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  let featuredEvents = null;
+  const allEvents = await getAllEventsFromFirebase();
+
+  if (allEvents) {
+    featuredEvents = await getFeaturedEvents(allEvents);
+  }
+  return {
+    props: {
+      featuredEvents,
+    },
+  };
 }
