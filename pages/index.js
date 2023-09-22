@@ -5,6 +5,7 @@ import { getFeaturedEvents } from "@/dummy-data";
 import EventList from "@/components/events/event-list";
 
 import { getAllEventsFromFirebase } from "@/helpers/api-utils";
+import NewsletterRegistration from "@/components/input/newsletter-registration";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function HomePage(props) {
       </Head>
       {/* <main className={`${styles.main} ${inter.className}`}> */}
       <div className={inter.className}>
+        <NewsletterRegistration />
         <EventList items={featuredEvents} />
       </div>
     </>

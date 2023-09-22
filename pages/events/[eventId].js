@@ -7,11 +7,9 @@ import {
   getEventById,
   getFeaturedEvents,
 } from "@/helpers/api-utils";
+import Comments from "@/components/input/comments";
 
 function SingleEventPage(props) {
-  // const router = useRouter();
-  // const eventId = router.query.eventId;
-
   const event = props.event;
   if (!event) {
     return <div className="center">Loading...</div>;
@@ -29,6 +27,7 @@ function SingleEventPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments event={event.id} />
     </>
   );
 }
