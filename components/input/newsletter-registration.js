@@ -21,10 +21,6 @@ function NewsletterRegistration() {
         email_sent: enteredEmail,
       });
       // const result = handler({ email_sent: enteredEmail });
-      console.log("Adresse e-mail valide :", result);
-    } else {
-      // L'adresse e-mail est invalide
-      console.log("Adresse e-mail invalide :", enteredEmail);
     }
   }
 

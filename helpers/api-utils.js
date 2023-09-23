@@ -4,9 +4,7 @@ export async function getAllEventsFromFirebase() {
   let transformData = [];
 
   try {
-    let response = await axios.get(
-      "https://next-prerendering-b9ecc-default-rtdb.firebaseio.com/events.json"
-    );
+    let response = await axios.get(process.env.firebase_db);
     for (const eventId in response.data) {
       const event = response.data[eventId];
       transformData.push({
@@ -25,7 +23,6 @@ export function getFeaturedEvents(allEvents) {
   return featuredEvents;
 }
 export async function getEventById(eventId) {
-  console.log(eventId);
   const allEvents = await getAllEventsFromFirebase();
   return allEvents.find((event) => event.id === eventId);
 }

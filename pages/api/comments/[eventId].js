@@ -15,16 +15,7 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     const eventId = req.query.eventId;
     const { email, name, text } = req.body.commentData;
-    console.log(
-      "eventId = ",
-      eventId,
-      "email = ",
-      email,
-      " name = ",
-      name,
-      "text = ",
-      text
-    );
+
     res.status(200).json({ message: "email sauvegardé" });
   }
   if (req.method === "GET") {
@@ -32,8 +23,6 @@ export default function handler(req, res) {
     let eventComments = dummy_data.filter(
       (element) => element.eventId === eventId
     );
-
-    console.log("eventId = ", eventId, "eventComments = ", eventComments);
     res
       .status(200)
       .json({ message: "event comments fetched", data: eventComments });

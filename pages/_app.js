@@ -7,11 +7,11 @@ export default function App({ Component, pageProps }) {
   return (
     <Layout>
       <Component {...pageProps} />
-      <Notification
+      {/* <Notification
         title={"Success notification"}
         message="This a test message"
         status={"success"}
-      />
+      /> */}
     </Layout>
   );
 }
